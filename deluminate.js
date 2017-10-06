@@ -160,6 +160,7 @@ function getScrollbarWidth() {
    outer.style.visibility = 'hidden';
    outer.style.width = '100px';
    inner.style.width = '100%';
+   inner.style.visibility = 'hidden';
    outer.appendChild(inner);
    document.documentElement.appendChild(outer);
 
