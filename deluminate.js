@@ -153,25 +153,28 @@ function removeById(id) {
   }
 }
 
-function getScrollbarWidth() {
+var scw = (function getScrollbarWidth() {
    const outer = document.createElement('div');
-   const inner = document.createElement('div');
-
    outer.style.visibility = 'hidden';
    outer.style.width = '100px';
+
+   const inner = document.createElement('div');
    inner.style.width = '100%';
    inner.style.visibility = 'hidden';
+
    outer.appendChild(inner);
+
    document.documentElement.appendChild(outer);
 
    const widthWithoutScrollbar = outer.offsetWidth;
    outer.style.overflow = 'scroll';
-   const widthWithScrollbar = inner.offsetWidth;
-   document.documentElement.removeChild(outer);
-   return (widthWithoutScrollbar - widthWithScrollbar);
-}
 
-var scw = getScrollbarWidth();
+   const widthWithScrollbar = inner.offsetWidth;
+
+   document.documentElement.removeChild(outer);
+
+   return (widthWithoutScrollbar - widthWithScrollbar);
+})();
 
 function resetFullscreenWorkaroundHeight() {
   // We need to calculate the size of the page _minus_ the current size of the
